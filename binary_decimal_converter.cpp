@@ -1,57 +1,59 @@
-#include<iostream>
-#include<math.h>
+#include <iostream>
+#include <cmath>
 using namespace std;
-void binary_to_decimal(){
-    cout<<"Enter binary to convert it into number"<<endl;
-    int n;
-    cin>>n;
-    int ans=0;
-    int i=0;
-    while(n!=0){
-        int digit=n%10;
-        if(digit==1){
-            ans=ans+pow(2,i);
+
+int binaryToDecimal(int n) {
+    int ans = 0;
+    int i = 0;
+    while (n != 0) {
+        int digit = n % 10;
+        if (digit == 1) {
+            ans += pow(2, i);
         }
-        n=n/10;
+        n /= 10;
         i++;
     }
-    cout<<"Answer is "<<ans<<endl;
+    return ans;
 }
-void decimal_to_binary(){
-    cout<<"Enter number to convert it into binary"<<endl;
-    int n;
-    cin>>n;
-    int ans=0;
-    int i=0;
-    while(n!=0){
-        int bit=n&1;
-        ans=(bit*pow(10,i))+ans;
-        n=n>>1;
-        i++;
+
+int decimalToBinary(int n) {
+    int ans = 0;
+    int base = 1;
+    while (n > 0) {
+        int bit = n % 2;
+        ans += bit * base;
+        n /= 2;
+        base *= 10;
     }
-    cout<<"Answer is " <<ans<<endl;
-
+    return ans;
 }
 
+int main() {
+    cout << "Welcome to binary and decimal converter Program" << endl;
+    cout << "Please Enter Your Choice" << endl;
+    cout << "1. Convert Binary into Decimal" << endl;
+    cout << "2. Convert Decimal into Binary" << endl;
 
-int main(){
-
-    cout<<"Welcome to binary and decimal converter Program"<<endl;
-    cout<<"Please Enter Your Choice"<<endl<<"1.Convert Binary into Decimal"<<endl<<"2.Convert Decimal into Binary"<<endl;
     int ch;
-    cin>>ch;
-     
-    switch(ch){
+    cin >> ch;
 
-        case 1:  
-                    binary_to_decimal();
-                    break;
-        case 2:  
-                    decimal_to_binary();
-                    break; 
+    switch (ch) {
+        case 1:
+            cout << "Enter binary to convert it into a number: ";
+            int binaryInput;
+            cin >> binaryInput;
+            cout << "Answer is " << binaryToDecimal(binaryInput) << endl;
+            break;
+        case 2:
+            cout << "Enter number to convert it into binary: ";
+            int decimalInput;
+            cin >> decimalInput;
+            cout << "Answer is " << decimalToBinary(decimalInput) << endl;
+            break;
         default:
-                    cout<<"Enter a valid option!"<<endl;
-                     break;   
-
+            cout << "Enter a valid option!" << endl;
+            break;
     }
+
+    return 0;
 }
